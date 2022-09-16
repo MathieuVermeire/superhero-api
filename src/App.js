@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react'
 // import express from 'express';
@@ -13,6 +12,7 @@ function App() {
 	const [loaded, setLoaded] = useState(false);
 
 	console.log(loaded);
+	console.log(items);
 
 	let headers = new Headers();
 
