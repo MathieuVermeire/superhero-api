@@ -1,0 +1,29 @@
+.content {
+	margin-left: 5rem;
+	margin-top: 3rem;
+}
+
+.personalContainer {
+	margin-top: 1rem;
+	display: flex;
+	flex-flow: column;
+	gap: 2rem;
+
+}
+
+.menu {
+	list-style-type: none;
+}
+
+.item {
+	display: flex;
+	gap: 1rem;
+}
+
+.powerstats {
+
+}
+
+.intelligence {
+
+}

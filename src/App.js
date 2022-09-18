@@ -1,18 +1,22 @@
+import './reset.css';
 import './App.css';
+import styles from './css/Home.module.css'
 import { useState, useEffect } from 'react'
-// import express from 'express';
-// import cors from 'cors';
+import { Link } from 'react-router-dom';
+import FetchSuperheroes from './components/FetchSuperheroes';
 
 function App() {
-	// const app = express();
-	// app.use(cors({
-	// 	origin: 'http://localhost:3000/',
-	// }))
-	const [items, setitems] = useState([]);
-	const [loaded, setLoaded] = useState(false);
+	const [searchValue, setSearchValue] = useState('');
+	const { items, loaded } = FetchSuperheroes(searchValue);
 
-	console.log(loaded);
+	console.log(searchValue);
+
 	console.log(items);
+
+	const handleSearch = (e) => {
+		setSearchValue(`search/${e.target.value}`);
+	}
+
 
 	let headers = new Headers();
 
@@ -23,43 +27,36 @@ function App() {
 		headers.append("Access-Control-Allow-Origin", "*");
 		headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-	useEffect(() => {
-		// const fetchHero = async() => {
-		// 	const url = `https://superheroapi.com/api/10225599895563153/search/batman`;
-		// 	const res = await fetch(url, {mode: 'no-cors'});
-		// 	const data = await res.json();
-		// 	if(data) {
-		// 		console.log(data);
-		// 	}
-		// }
+	if(searchValue === 'search/' || searchValue === '') return (
+		<>
+			<input onChange={handleSearch} type='text' name='searchfield' />
+			<></>
+		</>
+	);
 
-		// fetchHero();
-		fetch('https://superheroapi.com/api.php/10225599895563153/search/batman', {
-			// origin: 'http://localhost:3000',
-			// method: 'HEAD',
-			// mode: 'cors'
-			// headers: headers,
-		})
-		.then(res => {
-			setLoaded(true);
-			res.json().then(json => {
-				if(json.response === 'success'){
-					setitems(json);
-					setLoaded(false);
-					console.log(json);
-				}
-			})
-		}
-		).catch((err) => {
-			console.log(err.message);
-	 });
-	},[])
 
-  return (
-    <div className="App">
-
-    </div>
+	if(!loaded) return (
+		<>
+			<input onChange={handleSearch} type='text' name='searchfield' />
+			<p>loading</p>
+		</>
   );
+
+	return (
+		<>
+			<input onChange={handleSearch} type='text' name='searchfield' />
+				<ul className={styles.menu}>
+					{items.results.map(item => (
+						<li className={styles.item} key={item.id}>
+							<Link to={`/${item.id}`}>
+								<img className={styles.image} src={item.image.url} alt={`${item.name} - image`}  onError={(e) => {e.target.src = `img/fallback.png`}} />
+								<p>{item.name}</p>
+							</Link>
+						</li>
+					))}
+				</ul>
+		</>
+	);
 }
 
 export default App;
