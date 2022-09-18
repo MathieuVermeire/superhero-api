@@ -1,6 +1,79 @@
+.main {
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: space-around;
+	font-family: 'Exo';
+	margin-left: 3vw;
+	margin-top: 6vh;
+	position: relative;
+}
+
+.superhero {
+	grid-column: 2;
+	display: flex;
+	flex-flow: column;
+	border-radius: 1rem;
+	background-color: rgba(0, 0, 0, 0.75);
+	width: 25rem;
+	height: 40rem;
+	overflow: hidden;
+	filter: drop-shadow(50px 30px 30px rgba(0, 0, 0, 0.3));
+}
+
+.superheroImage {
+	/* mask-image: url("/public/img/detail-mask.svg"); */
+	width: 100%;
+	height: 80%;
+	object-fit: cover;
+	mask-image: linear-gradient(179.92deg, #000000 59.36%, rgba(0, 0, 0, 0) 99.93%);
+	/* mask-repeat: no-repeat;
+	mask-position: bottom; */
+}
+
+.superheroTitle {
+	color: white;
+	text-align: center;
+	margin-top: 1rem;
+}
+
 .content {
-	margin-left: 5rem;
-	margin-top: 3rem;
+	grid-column: 3;
+	display: flex;
+	background: rgba(0, 0, 0, 0.5);
+	border: .1rem solid #FFFFFF;
+	border-radius: 1rem;
+	color: white;
+	padding-top: 2rem;
+	padding-left: 5vw;
+	padding-right: 7vw;
+	padding-bottom: 4rem;
+	min-width: 30rem;
+}
+
+.contentTitle {
+	margin-bottom: 2rem;
+}
+
+.back {
+	background: rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 1rem;
+	width: 7rem;
+	height: 7rem;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.back p {
+	font-size: 1.2rem;
+	color: white;
+}
+
+.back img {
+	width: 20%;
 }
 
 .personalContainer {
@@ -8,16 +81,43 @@
 	display: flex;
 	flex-flow: column;
 	gap: 2rem;
-
+	min-width: inherit;
 }
 
 .menu {
 	list-style-type: none;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-flow: column;
+	gap: 1.2rem;
 }
 
 .item {
 	display: flex;
-	gap: 1rem;
+	flex-flow: column;
+	gap: .5rem;
+}
+
+.itemPowerstats {
+	flex-flow: row;
+	align-items: center;
+	gap: 0;
+	justify-content: space-between;
+}
+
+.tag {
+	font-size: 1.8rem;
+}
+
+.value {
+	font-size: 1rem;
+	max-width: 30rem;
+}
+
+.valuePowerstats {
+	justify-self: flex-end;
+	font-size: 2rem;
+	font-weight: bold;
 }
 
 .powerstats {

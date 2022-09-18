@@ -9,14 +9,9 @@ function App() {
 	const [searchValue, setSearchValue] = useState('');
 	const { items, loaded } = FetchSuperheroes(searchValue);
 
-	console.log(searchValue);
-
-	console.log(items);
-
 	const handleSearch = (e) => {
 		setSearchValue(`search/${e.target.value}`);
 	}
-
 
 	let headers = new Headers();
 
@@ -28,34 +23,43 @@ function App() {
 		headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 	if(searchValue === 'search/' || searchValue === '') return (
-		<>
-			<input onChange={handleSearch} type='text' name='searchfield' />
+		<main className={styles.main}>
+			<div className={styles.search}>
+				<img className={styles.searchIcon} src='img/looking-glass.svg' alt='looking-glass' />
+				<input className={styles.searchField} onChange={handleSearch} type='text' placeholder='Search for heroes' name='searchfield' />
+			</div>
 			<></>
-		</>
+		</main>
 	);
 
 
 	if(!loaded) return (
-		<>
-			<input onChange={handleSearch} type='text' name='searchfield' />
+		<main className={styles.main}>
+			<div className={styles.search}>
+				<img className={styles.searchIcon} src='img/looking-glass.svg' alt='looking-glass' />
+				<input className={styles.searchField} onChange={handleSearch} type='text' placeholder='Search for heroes' name='searchfield' />
+			</div>
 			<p>loading</p>
-		</>
+		</main>
   );
 
 	return (
-		<>
-			<input onChange={handleSearch} type='text' name='searchfield' />
+		<main className={styles.main}>
+			<div className={styles.search}>
+				<img className={styles.searchIcon} src='img/looking-glass.svg' alt='looking-glass' />
+				<input className={styles.searchField} onChange={handleSearch} type='text' placeholder='Search for heroes' name='searchfield' />
+			</div>
 				<ul className={styles.menu}>
 					{items.results.map(item => (
 						<li className={styles.item} key={item.id}>
 							<Link to={`/${item.id}`}>
-								<img className={styles.image} src={item.image.url} alt={`${item.name}`}  onError={(e) => {e.target.src = `img/fallback.png`}} />
-								<p>{item.name}</p>
+									<img className={styles.image} src={item.image.url} alt={`${item.name}`}  onError={(e) => {e.target.src = `img/fallback.png`}} />
+								<p className={styles.itemName}>{item.name}</p>
 							</Link>
 						</li>
 					))}
 				</ul>
-		</>
+		</main>
 	);
 }
 
