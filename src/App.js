@@ -1,7 +1,7 @@
 import './reset.css';
 import './App.css';
 import styles from './css/Home.module.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import FetchSuperheroes from './components/FetchSuperheroes';
 
@@ -49,7 +49,7 @@ function App() {
 					{items.results.map(item => (
 						<li className={styles.item} key={item.id}>
 							<Link to={`/${item.id}`}>
-								<img className={styles.image} src={item.image.url} alt={`${item.name} - image`}  onError={(e) => {e.target.src = `img/fallback.png`}} />
+								<img className={styles.image} src={item.image.url} alt={`${item.name}`}  onError={(e) => {e.target.src = `img/fallback.png`}} />
 								<p>{item.name}</p>
 							</Link>
 						</li>
